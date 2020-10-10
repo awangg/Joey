@@ -25,6 +25,7 @@ import SignupScreen from './screens/SignupScreen';
 import ProfileScreen from './screens/ProfileScreen';
 import LoadingScreen from './screens/LoadingScreen';
 
+
 Vue.use(VueNativeBase);
 
 const AuthTabNavigator = createBottomTabNavigator(
@@ -83,7 +84,7 @@ const StackNavigator = createStackNavigator(
       }
     },
   }, {
-    initialRouteName: 'Tabs'
+    initialRouteName: 'Loading'
   }
 );
 

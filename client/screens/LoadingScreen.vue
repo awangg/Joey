@@ -31,5 +31,7 @@ export default {
 
 .welcome {
   font-size: 24;
+  color: #69553f;
+  font-weight: 700;
 }
 </style>
