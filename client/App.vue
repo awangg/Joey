@@ -60,7 +60,12 @@ const BottomTabNavigator = createBottomTabNavigator(
 
 const StackNavigator = createStackNavigator(
   {
-    Loading: LoadingScreen,
+    Loading: {
+      screen: LoadingScreen,
+      navigationOptions: {
+        headerShown: false
+      }
+    },
     Auth: {
       screen: AuthTabNavigator,
       navigationOptions: {

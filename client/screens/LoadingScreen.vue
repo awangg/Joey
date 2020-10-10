@@ -1,22 +1,35 @@
 <template>
   <view class="container">
-    <text>Loading Screen</text>
-    <button title="Go to home screen" @press="goToHomeScreen"></button>
+    <image
+      :style="{width: '100%', height: '100%', position: 'absolute'}"
+      :source="require('../assets/authbg.png')" />
+    <image
+      :style="{width: 400, height: 400, zIndex: 1}" 
+      :source="require('../assets/jump.gif')" />
+    <text class="welcome"> Welcome to Joey! </text>
   </view>
 </template>
 
 <script>
 export default {
-  // Declare `navigation` as a prop
   props: {
-    navigation: {
-      type: Object
-    }
+    navigation: { type: Object } 
   },
-  methods: {
-    goToHomeScreen() {
-      this.navigation.navigate("Home");
-    }
+  mounted() {
+    let _this = this;
+    setTimeout(function () { _this.navigation.navigate('Auth') }, 2000)
   }
 }
 </script>
+
+<style scoped>
+.container {
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+}
+
+.welcome {
+  font-size: 24;
+}
+</style>
