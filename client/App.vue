@@ -4,10 +4,13 @@
 
 <script>
 /**
- * React libraries 
+ * React/Vue libraries 
  */
 import * as React from 'react';
+import Vue from "vue-native-core";
+import Vuex from 'vuex';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { VueNativeBase } from "native-base";
 
 /**
  * Navigation libraries
@@ -21,6 +24,8 @@ import LoginScreen from './screens/LoginScreen';
 import SignupScreen from './screens/SignupScreen';
 import ProfileScreen from './screens/ProfileScreen';
 import LoadingScreen from './screens/LoadingScreen';
+
+Vue.use(VueNativeBase);
 
 const AuthTabNavigator = createBottomTabNavigator(
   {
@@ -45,7 +50,7 @@ const AuthTabNavigator = createBottomTabNavigator(
   }, {
     initialRouteName: 'Login'
   }
-)
+);
 
 const BottomTabNavigator = createBottomTabNavigator(
   {
