@@ -83,7 +83,7 @@ const StackNavigator = createStackNavigator(
       }
     },
   }, {
-    initialRouteName: 'Tabs'
+    initialRouteName: 'Loading'
   }
 );
 
@@ -93,6 +93,3 @@ export default {
   components: { AppNavigator }
 }
 </script>
-
-<style>
-</style>
