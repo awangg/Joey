@@ -12,7 +12,8 @@ const schema = new mongoose.Schema({
     title: { type: String },
     description: { type: String },
     created: { type: Date }
-  }], default: [] }
+  }], default: [] },
+  birthday: { type: Date, required: 'Birthday Required' }
 })
 
 schema.pre('save', function (next) {
@@ -36,7 +37,8 @@ schema.statics.validateModel = (model) => {
     name: Joi.string().required(),
     password: Joi.string().required(),
     room: Joi.number(),
-    events: Joi.object().required()
+    events: Joi.object(),
+    birthday: Joi.date().required()
   })
   return joiSchema.validate(model)
 }
