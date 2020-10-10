@@ -24,6 +24,7 @@ import LoginScreen from './screens/LoginScreen';
 import SignupScreen from './screens/SignupScreen';
 import ProfileScreen from './screens/ProfileScreen';
 import LoadingScreen from './screens/LoadingScreen';
+import CalendarScreen from './screens/Calendar';
 
 Vue.use(VueNativeBase);
 
@@ -54,7 +55,8 @@ const AuthTabNavigator = createBottomTabNavigator(
 
 const BottomTabNavigator = createBottomTabNavigator(
   {
-    Profile: ProfileScreen
+    Profile: ProfileScreen,
+    Calendar: CalendarScreen,
   }
 );
 
