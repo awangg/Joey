@@ -1,0 +1,250 @@
+swagger: "2.0"
+info:
+  description: "Endpoints for Duncan website API. All endpoints except for /auth/login and /auth/signup require a JWT token that's generated with /auth/login and /auth/signup"
+  version: "1.0.0"
+  title: "Duncan API"
+host: "riceduncan.mooo.com"
+basePath: "/api/v1"
+tags:
+- name: "auth"
+  description: "User authentication and authorization"
+- name: "event"
+  description: "Event operations"
+- name: "user"
+  description: "User operations"
+schemes:
+- "http"
+paths:
+  /auth/login:
+    post:
+      tags:
+      - "auth"
+      summary: "Login an existing user"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "credentials"
+        description: "Existing user credentials"
+        required: true
+        schema:
+          $ref: '#/definitions/LoginCredentials'
+      responses:
+        "200":
+          description: "Login Success"
+          schema:
+            $ref: '#/definitions/Token'
+        "401":
+          description: "Incorrect Password"
+          schema:
+            $ref: '#/definitions/ApiError'
+        "404":
+          description: "User Not Found"
+          schema:
+            $ref: '#/definitions/ApiError'
+  /auth/signup:
+    post:
+      tags:
+      - "auth"
+      summary: "Creates a new user"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "user"
+        description: "Properties of new user"
+        required: true
+        schema:
+          $ref: '#/definitions/NewUser'
+      responses:
+        "201":
+          description: "Signup Success"
+          schema:
+            $ref: '#/definitions/Token'
+        "400":
+          description: "Invalid user schema"
+          schema:
+            $ref: '#/definitions/ApiError'
+        "401":
+          description: "User already exists"
+          schema:
+            $ref: '#/definitions/ApiError'
+  /auth/me:
+    get:
+      tags:
+      - "auth"
+      summary: "Gets user information from JWT token"
+      produces:
+      - "application/json"
+      responses:
+        "200":
+          description: "Successfully retrieved user"
+          schema:
+            $ref: '#/definitions/User'
+        "404":
+          description: "User not found"
+          schema:
+            $ref: '#/definitions/ApiError'
+  /users/events/{eventId}:
+    put:
+      tags:
+      - "user"
+      summary: "Registers a user for an event"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "path"
+        name: "eventId"
+        type: "string"
+        description: "ID of event to register for"
+        required: true
+      responses:
+        "200":
+          description: "Successfully registered user"
+          schema:
+            $ref: '#/definitions/User'
+        "401":
+          description: "Invalid user"
+          schema:
+            $ref: '#/definitions/ApiError'
+        "404":
+          description: "Event not found"
+          schema:
+            $ref: '#/definitions/ApiError'
+    delete:
+      tags:
+      - "user"
+      summary: "Unregisters a user from an event"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "path"
+        name: "eventId"
+        type: "string"
+        description: "ID of event to register for"
+        required: true
+      responses:
+        "200":
+          description: "Successfully registered user"
+          schema:
+            $ref: '#/definitions/User'
+        "401":
+          description: "Invalid user"
+          schema:
+            $ref: '#/definitions/ApiError'
+        "404":
+          description: "Event not found"
+          schema:
+            $ref: '#/definitions/ApiError'
+  /events:
+    get:
+      tags:
+      - "event"
+      summary: "Get all events"
+      produces:
+      - "application/json"
+      responses:
+        "200":
+          description: "Retrieved all events"
+          schema:
+            $ref: '#/definitions/EventList'
+  /events/{eventId}:
+    get:
+      tags:
+      - "event"
+      summary: "Get a specific event"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "path"
+        name: "eventId"
+        type: "string"
+        description: "Id of the requested event"
+        required: true
+      responses:
+        "200":
+          description: "Successfully retrieved event"
+          schema:
+            $ref: '#/definitions/Event'
+        "404":
+          description: "Event not found"
+          schema:
+            $ref: '#/definitions/ApiError'
+definitions:
+  ApiError:
+    type: object
+    properties:
+      message:
+        type: string
+      status:
+        type: number
+      timestamp:
+        type: number
+  Event:
+    type: object
+    properties:
+      title:
+        type: string
+      description:
+        type: string
+      image:
+        type: string
+        description: "Signed URL to image"
+      registered:
+        type: array
+        items:
+          type: string
+      created:
+        type: string
+        description: "MomentJS-formatted date"
+  EventList:
+    type: object
+    properties:
+      events:
+        type: array
+        items:
+          $ref: '#/definitions/Event'
+  NewUser:
+    type: object
+    properties:
+      name:
+        type: string
+      email:
+        type: string
+      password:
+        type: string
+  LoginCredentials:
+    type: object
+    properties:
+      email:
+        type: string
+      password:
+        type: string
+  Token:
+    type: object
+    properties:
+      token:
+        type: string
+        description: "JWT token - encodes user information"
+  User:
+    type: object
+    properties:
+      name:
+        type: string
+      email:
+        type: string
+      password:
+        type: string
+        description: "Hashed"
+      events:
+        type: array
+        items:
+          $ref: '#/definitions/Event'
+      room:
+        type: number
+      _id:
+        type: string
