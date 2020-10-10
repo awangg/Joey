@@ -26,6 +26,7 @@ import ProfileScreen from './screens/ProfileScreen';
 import LoadingScreen from './screens/LoadingScreen';
 import CalendarScreen from './screens/Calendar';
 
+
 Vue.use(VueNativeBase);
 
 const AuthTabNavigator = createBottomTabNavigator(
