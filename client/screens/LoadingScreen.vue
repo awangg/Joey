@@ -4,7 +4,7 @@
       :style="{width: '100%', height: '100%', position: 'absolute'}"
       :source="require('../assets/authbg.png')" />
     <image
-      :style="{width: 400, height: 400, zIndex: 1}" 
+      :style="{width: 250, height: 250, zIndex: 1}" 
       :source="require('../assets/jump.gif')" />
     <text class="welcome"> Welcome to Joey! </text>
   </view>
