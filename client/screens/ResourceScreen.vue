@@ -71,6 +71,7 @@ export default {
 <style scoped>
 .outer {
   flex: 1;
+  margin-top: 50;
   justify-content: center;
 }
 
