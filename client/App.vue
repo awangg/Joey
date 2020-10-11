@@ -24,11 +24,11 @@ import LoginScreen from './screens/LoginScreen';
 import SignupScreen from './screens/SignupScreen';
 import ProfileScreen from './screens/ProfileScreen';
 import LoadingScreen from './screens/LoadingScreen';
-import CalendarScreen from './screens/Calendar';
+import CalendarScreen from './screens/CalendarScreen';
 import AnnouncementScreen from './screens/AnnouncementScreen';
 import DuncTankScreen from './screens/DuncTank';
 import DunkTimeScreen from './screens/DunkTime';
-
+import ResourceScreen from './screens/ResourceScreen';
 
 Vue.use(VueNativeBase);
 
@@ -58,7 +58,7 @@ const AuthTabNavigator = createBottomTabNavigator(
     tabBarOptions: {
       style: {
         paddingTop: 8,
-        backgroundColor: '#a8cc78'
+        backgroundColor: '#white'
       },
       labelStyle: { fontSize: 16 },
       labelPosition: 'beside-icon',
@@ -96,6 +96,15 @@ const BottomTabNavigator = createBottomTabNavigator(
         }
       }
     },
+    Resources: {
+      screen: ResourceScreen,
+      navigationOptions: {
+        title: 'Resources',
+        tabBarIcon: () => {
+          return <Icon name="question-circle" size={25} />;
+        }
+      }
+    },
     Profile: {
       screen: ProfileScreen,
       navigationOptions: {
@@ -111,7 +120,7 @@ const BottomTabNavigator = createBottomTabNavigator(
     tabBarOptions: {
       style: {
         paddingTop: 8,
-        backgroundColor: '#a8cc78'
+        backgroundColor: 'white'
       },
       inactiveTintColor: '#000'
     }
@@ -163,7 +172,7 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color:white;
   display: flex;
   align-items: center;
   justify-content: center;
