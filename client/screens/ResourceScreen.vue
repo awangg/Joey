@@ -79,7 +79,7 @@ export default {
   flex: 1;
   z-index: 1;
   background-color: transparent;
-  padding-top: 250;
+  padding-top: 350;
   padding-left: 20;
   padding-right: 20;
 }
