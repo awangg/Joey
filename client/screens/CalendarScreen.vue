@@ -54,7 +54,7 @@ export default {
   methods: {
         goBack: function() {
             alert('MWAHAHAHA GO BACK')
-            this.month = 
+            this.month = 'hi'
         },
         goNext: function() {
             alert('MWAHAHAHA GO NEXT')
