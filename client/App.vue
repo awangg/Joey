@@ -26,6 +26,8 @@ import ProfileScreen from './screens/ProfileScreen';
 import LoadingScreen from './screens/LoadingScreen';
 import CalendarScreen from './screens/CalendarScreen';
 import AnnouncementScreen from './screens/AnnouncementScreen';
+import DuncTankScreen from './screens/DuncTank';
+import DunkTimeScreen from './screens/DunkTime';
 import ResourceScreen from './screens/ResourceScreen';
 
 Vue.use(VueNativeBase);
@@ -85,6 +87,15 @@ const BottomTabNavigator = createBottomTabNavigator(
         }
       }
     },
+    DuncTank: {
+      screen: DuncTankScreen,
+      navigationOptions: {
+        title: 'Dunk',
+        tabBarIcon: () => {
+          return <Icon name="birthday-cake" size={25} />
+        }
+      }
+    },
     Resources: {
       screen: ResourceScreen,
       navigationOptions: {
@@ -140,8 +151,11 @@ const StackNavigator = createStackNavigator(
         },
       }
     },
+    DunkTime: {
+      screen: DunkTimeScreen
+    }
   }, {
-    initialRouteName: 'Loading'
+    initialRouteName: 'Tabs'
   }
 );
 
