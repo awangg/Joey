@@ -3,7 +3,7 @@
       <nb-grid>
       <nb-row :style="{height: '10%'}" v-for="(week, index) in rows" :key="index" class="row">
           <nb-col v-for="(day, uindex) in week" :key="uindex" class="col">
-            <nb-text>{{day.day}}</nb-text>
+            <nb-text class="day">{{day.day}}</nb-text>
             <nb-text> • </nb-text>
           </nb-col>
         </nb-row>
@@ -20,7 +20,6 @@ export default {
     return {
       monthStuff: [],
       rows: []
-      
     }
   },
   created() {
@@ -74,4 +73,7 @@ export default {
 </script>
 
 <style scoped>
+.col .day{
+  border-style: solid;
+}
 </style>
