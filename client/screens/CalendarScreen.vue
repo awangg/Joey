@@ -1,27 +1,34 @@
 <template>
-  <nb-container class="container">
+  <nb-container>
     <nb-header>
       <nb-left>
-        <nb-button :on-press="goBack">
-          <text>previous</text>
+        <nb-button info :on-press="decrementMonth">
+          <nb-icon active name="arrow-back" />
         </nb-button>
       </nb-left>
       <nb-body>
-        <nb-title>{{month}}</nb-title>
+        <nb-title>{{ calendar[current] }}</nb-title>
       </nb-body>
-      <nb-right> 
-        <nb-button :on-press="goNext">
-          <text>next</text>
+      <nb-right>
+        <nb-button info :on-press="incrementMonth">
+          <nb-icon active name="arrow-forward" />
         </nb-button>
       </nb-right>
     </nb-header>
-    <nb-content>
-      <Calendar v-bind:month="this.month" v-bind:today="this.todayDate" />
-    </nb-content>
+    <nb-container>
+      <Calendar :month="current+1" :days="days[current]" :events="eventsByMonth[current]" @registered="getAllEvents" />
+    </nb-container>
   </nb-container>
 </template>
 
 <script>
+import moment from 'moment'
+import React from 'react'
+import { Text } from 'react-native'
+import axios from 'axios'
+
+import config from '../config'
+import store from '../utils/store'
 import Calendar from '../components/Calendar'
 
 export default {
@@ -31,60 +38,49 @@ export default {
   components: { Calendar },
   data() {
     return {
-      monthNum: 0,
-      months: [
-            'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'
-          ],
-      month: 'January',
-      todayDate: ''
+      calendar: ['January', 'February', 'March', 'April',
+        'May', 'June', 'July', 'August', 'September',
+        'October', 'November', 'December'],
+      days: [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31],
+      eventsByMonth: [
+        [], [], [], [], [], [], [], [], [], [], [], []
+      ],
+      current: 0
     }
   },
   created() {
-    this.getMonth()
+    this.current = moment().month()
+    this.getAllEvents()
   },
   methods: {
-        goBack: function() {
-            this.monthNum = this.monthNum - 1
-            if (this.monthNum == -1) {
-              this.monthNum = 11
-            }
-            this.month = this.months[this.monthNum]
-        },
-        goNext: function() {
-            this.monthNum = this.monthNum + 1
-            if (this.monthNum > 11) {
-              this.monthNum = 0
-            }
-            this.month = this.months[this.monthNum]
-        },
-        getMonth: function() {
-          var today = new Date()
-          var dd = String(today.getDate()).padStart(2, '0') // get the DAY
-          this.monthNum = String(today.getMonth() + 1).padStart(2, '0') - 1
-          this.month = this.months[this.monthNum]
-          this.todayDate = String(today.getMonth() + 1).padStart(2, '0') + '-' + dd
-          return this.month
+    decrementMonth() {
+      this.current = (this.current - 1) % 12;
+    },
+    incrementMonth() {
+      this.current = (this.current + 1) % 12;
+    },
+    getAllEvents() {
+      this.eventsByMonth = [
+        [], [], [], [], [], [], [], [], [], [], [], []
+      ],
+      axios({
+        method: 'get',
+        url: `${config.api.BASE_URL}/events/`,
+        headers: {
+          Authorization: `Bearer ${store.state.token}`
         }
+      }).then( (response) => {
+        response.data.forEach( (event) => {
+          let month = parseInt(event.date.substring(5, 7))
+          event.date = moment(event.date).format('YYYY-MM-DD HH:mm')
+          this.eventsByMonth[month-1].push(event)
+          this.eventsByMonth[month-1].sort((a, b) => new Date(a.date.split(' ')[0]) - new Date(b.date.split(' ')[0]))
+        })
+      })
     }
+  }
 }
-
 </script>
 
 <style scoped>
-.container {
-  flex: 1;
-  justify-content: center;
-  align-items: center;
-}
-
-
-body {
-	background: #ccc;
-	font: 87.5%/1.5em 'Lato', sans-serif;
-	margin: 0;
-}
-
-.container {
-  min-width: 100%
-}
 </style>
