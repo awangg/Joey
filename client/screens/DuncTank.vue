@@ -7,8 +7,8 @@
       <nb-grid>
         <nb-row v-for="(quadruplet, index) in rows" :key="index" class="row">
           <nb-col v-for="(user, uindex) in quadruplet" :key="uindex" @press="dunkUser(user.image, user.name)" class="col">
-            <nb-thumbnail :source="person" />
-            <nb-text>{{user.name}}</nb-text>
+            <nb-thumbnail :source="propics[uindex + 4*index]" />
+            <nb-text class="small">{{user.name}}</nb-text>
           </nb-col>
         </nb-row>
       </nb-grid>
@@ -17,7 +17,13 @@
 </template>
 
 <script>
+import axios from 'axios';
+import moment from 'moment';
+
+import config from '../config';
+import store from '../utils/store';
 import person from '../assets/person.png';
+import images from '../utils/images'
 
 export default {
   props: {
@@ -27,45 +33,12 @@ export default {
     return {
       person: person,
       users: [],
-      rows: []
+      rows: [],
+      propics: []
     }
   },
   created() {
-    this.users = [
-      {
-        image: '../assets/person.png',
-        name: 'Person A'
-      },
-      {
-        image: '../assets/person.png',
-        name: 'Person B'
-      },
-      {
-        image: '../assets/person.png',
-        name: 'Person C'
-      },
-      {
-        image: '../assets/person.png',
-        name: 'Person D'
-      },
-      {
-        image: '../assets/person.png',
-        name: 'Person E'
-      },
-      {
-        image: '../assets/person.png',
-        name: 'Person F'
-      },
-      {
-        image: '../assets/person.png',
-        name: 'Person G'
-      },
-      {
-        image: '../assets/person.png',
-        name: 'Person H'
-      }
-    ]
-    this.rows = this.splitIntoRows(this.users)
+    this.getAllBirthdayUsers()
   },
   methods: {
     splitIntoRows(array) {
@@ -77,6 +50,23 @@ export default {
     },
     dunkUser(image, name) {
       this.navigation.navigate('DunkTime', { image: image, name: name })
+    },
+    getAllBirthdayUsers() {
+      console.log('asdf')
+      axios({
+        method: 'get',
+        url: `${config.api.BASE_URL}/users/`,
+        headers: {
+          Authorization: `Bearer ${store.state.token}`
+        }
+      }).then( (response) => {
+        console.log('asdf')
+        console.log(moment().format('MM-DD'))
+        this.users = response.data.filter(o => o.birthday.substring(5, 10) == moment().format('MM-DD'))
+        this.propics = this.users.map(o => images[parseInt(o.image)-1])
+        console.log(this.users)
+        this.rows = this.splitIntoRows(this.users)
+      })
     }
   }
 }
@@ -104,5 +94,9 @@ export default {
 .title {
   text-align: center;
   background-color: transparent;
+}
+
+.small {
+  font-size: 12;
 }
 </style>

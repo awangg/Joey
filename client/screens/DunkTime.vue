@@ -14,6 +14,11 @@
             :source="image" />
         </animated:view>
     </nb-container>
+    <nb-container class="overlay">
+      <nb-h1 class="huge" v-if="appear1"> {{navigation.state.params.name.split(' ')[0]}} </nb-h1>
+      <nb-h1 class="huge" v-if="appear2"> GOT </nb-h1>
+      <nb-h1 class="huge" v-if="appear3"> DUNC'D </nb-h1>
+    </nb-container>
   </nb-container>
 </template>
 
@@ -31,7 +36,10 @@ export default {
       spin: "0deg",
       animatedValueRotate: 0,
       movingMargin: 0,
-      image: ''
+      image: '',
+      appear1: false,
+      appear2: false,
+      appear3: false
     }
   },
   created() {
@@ -39,13 +47,17 @@ export default {
     this.animatedValueRotate = new Animated.Value(0);
   },
   mounted() {
-    this.image = images[Math.trunc(Math.random() * images.length)]
+    this.image = images[parseInt(this.navigation.state.params.image) - 1]
     this.animationRotate()
   },
   methods: {
     animationRotate: function() {
       this.spinValue.setValue(0);
       this.animatedValueRotate.setValue(0);
+
+      setTimeout(() => { this.appear1 = true }, 1000)
+      setTimeout(() => { this.appear2 = true }, 3000)
+      setTimeout(() => { this.appear3 = true }, 5000)
 
       Animated
         .sequence([
@@ -65,7 +77,7 @@ export default {
           ], { useNativeDriver: false })
         ], { useNativeDriver: false })
         .start(() => {
-          setTimeout(() => { this.navigation.navigate('Tabs') }, 1000)
+          setTimeout(() => { this.navigation.navigate('Tabs') }, 5000)
         })
 
       this.spin = this.spinValue.interpolate({
@@ -83,6 +95,7 @@ export default {
 </script>
 
 <style scoped>
+
 .outer {
   flex: 1;
   align-items: center;
@@ -106,5 +119,25 @@ export default {
   font-size: 36;
   padding: 20;
   margin-top: -175;
+}
+
+.overlay {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 2;
+  background-color: transparent;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+}
+
+.huge {
+  text-align: center;
+  font-size: 69;
+  width: 100%;
+  padding-top: 130;
+  padding-bottom: 130;
+  font-family: Holtwood;
 }
 </style>
