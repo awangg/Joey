@@ -1,6 +1,5 @@
 <template>
-  <view class="container">
-  <nb-container>
+  <nb-container class="container">
     <nb-header>
       <nb-left>
         <nb-button :on-press="goBack">
@@ -15,12 +14,11 @@
           <text>next</text>
         </nb-button>
       </nb-right>
-      </nb-header>
-  </nb-container>
-  <nb-container>
+    </nb-header>
+    <nb-content>
       <Calendar />
+    </nb-content>
   </nb-container>
-  </view>
 </template>
 
 <script>
