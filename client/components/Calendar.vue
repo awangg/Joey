@@ -8,7 +8,7 @@
       </nb-row>
     </nb-grid>
     <nb-container>
-      <flat-list :data="events"
+      <flat-list v-if="readyToLoad" :data="events"
         :render-item="(item) => renderEvent(item)" />
     </nb-container>
   </nb-container>
@@ -36,12 +36,18 @@ export default {
     },
     events(update) {
       this.events = update
+      this.getRegisteredEvents()
     }
   },
   data() {
     return {
-      rows: []
+      rows: [],
+      registered: [],
+      readyToLoad: false
     }
+  },
+  created() {
+    this.getRegisteredEvents()
   },
   mounted() {
     this.rows = this.splitIntoRows(this.days)
@@ -70,6 +76,7 @@ export default {
       return this.events.find(o => o.date.includes(formatted))
     },
     renderEvent(event) {
+      console.log(this.registered)
       return (<Container style={{marginBottom: -350}}>
                 <H1 style={{marginBottom: 10}}> {moment(event.item.date).format('dddd, MMMM Do YYYY')} </H1>
                 <H3 style={{marginBottom: 10}}> {moment(event.item.date).format('hA')} </H3>
@@ -87,9 +94,12 @@ export default {
                     </Body>
                   </CardItem>
                   <CardItem footer>
-                    <Button success onPress={() => {this.registerForEvent(event.item._id)}}>
+                    {!this.registered.includes(event.item._id) && <Button success onPress={() => {this.registerForEvent(event.item._id)}}>
                       <Text> Register </Text>
-                    </Button>
+                    </Button>}
+                    {this.registered.includes(event.item._id) && <Button danger onPress={() => {this.cancelOnEvent(event.item._id)}}>
+                      <Text> Cancel </Text>
+                    </Button>}
                     <Text style={{marginLeft: 10}}> {event.item.registered.length} registered </Text>
                   </CardItem>
                 </Card>
@@ -109,6 +119,17 @@ export default {
       })
     },
     cancelOnEvent(eventId) {
+      axios({
+        method: 'delete',
+        url: `${config.api.BASE_URL}/users/events/${eventId}`,
+        headers: {
+          Authorization: `Bearer ${store.state.token}`
+        }
+      }).then( (response) => {
+        this.$emit('registered')
+      }).catch( (err) => {
+        console.log('request failed')
+      })
     },
     getRegisteredEvents() {
       axios({
@@ -118,7 +139,8 @@ export default {
           Authorization: `Bearer ${store.state.token}`
         }
       }).then( (response) => {
-        return response.data.events.map(x => x._id)
+        this.registered = response.data.events.map(x => x._id)
+        this.readyToLoad = true
       }).catch( (err) => {
         console.log(err.response)
       })

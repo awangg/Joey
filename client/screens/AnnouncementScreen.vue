@@ -1,12 +1,9 @@
 <template>
   <nb-container class="outer">
     <image
-      :style="{width: '100%', height: '100%', position: 'absolute', top: -100}"
+      :style="{width: '100%', height: '100%', position: 'absolute', top: -50}"
       :source="require('../assets/announcement.png')" />
     <nb-container class="container">
-      <!-- <flat-list :data="announcements"
-        :render-item="(item) => renderAnnouncement(item)"
-        :keyExtractor="(item, index) => index.toString()" /> -->
       <nb-accordion :dataArray="announcements"
         :headerStyle="{ padding: 20, backgroundColor: '#fafafa' }" expanded="0" />
     </nb-container>
@@ -64,6 +61,6 @@ export default {
   flex: 1;
   z-index: 1;
   background-color: transparent;
-  padding-top: 300;
+  padding-top: 350;
 }
 </style>
