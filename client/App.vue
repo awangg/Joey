@@ -26,7 +26,7 @@ import ProfileScreen from './screens/ProfileScreen';
 import LoadingScreen from './screens/LoadingScreen';
 import CalendarScreen from './screens/CalendarScreen';
 import AnnouncementScreen from './screens/AnnouncementScreen';
-import ReferenceScreen from './screens/ReferenceScreen';
+import ResourceScreen from './screens/ResourceScreen';
 
 Vue.use(VueNativeBase);
 
@@ -85,10 +85,10 @@ const BottomTabNavigator = createBottomTabNavigator(
         }
       }
     },
-    References: {
-      screen: ReferenceScreen,
+    Resources: {
+      screen: ResourceScreen,
       navigationOptions: {
-        title: 'References',
+        title: 'Resources',
         tabBarIcon: () => {
           return <Icon name="question-circle" size={25} />;
         }
