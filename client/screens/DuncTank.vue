@@ -1,10 +1,9 @@
 <template>
   <nb-container class="outer">
     <image
-      :style="{width: '75%', height: '60%'}"
+      :style="{width: '75%', height: '80%'}"
       :source="require('../assets/tank.png')" />
-    <nb-container :style="{width: '90%'}">
-      <nb-h3 class="title">Today's Birthdays</nb-h3>
+    <nb-container class="container">
       <nb-grid>
         <nb-row v-for="(quadruplet, index) in rows" :key="index" class="row">
           <nb-col v-for="(user, uindex) in quadruplet" :key="uindex" @press="dunkUser(user.image, user.name)" class="col">
@@ -89,6 +88,12 @@ export default {
   align-items: center;
 }
 
+.container {
+  width: 90%;
+  background-color: transparent;
+  margin-top: -50;
+}
+
 .row,
 .col {
   flex: 1;
@@ -98,5 +103,6 @@ export default {
 
 .title {
   text-align: center;
+  background-color: transparent;
 }
 </style>

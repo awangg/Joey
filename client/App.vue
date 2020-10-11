@@ -72,7 +72,7 @@ const BottomTabNavigator = createBottomTabNavigator(
     Announcements: {
       screen: AnnouncementScreen,
       navigationOptions: {
-        title: 'Announcements',
+        title: '',
         tabBarIcon: () => {
           return <Icon name="bullhorn" size={25} />;
         }
@@ -81,7 +81,7 @@ const BottomTabNavigator = createBottomTabNavigator(
     Calendar: {
       screen: CalendarScreen,
       navigationOptions: {
-        title: 'Calendar',
+        title: '',
         tabBarIcon: () => {
           return <Icon name="calendar" size={25} />;
         }
@@ -90,7 +90,7 @@ const BottomTabNavigator = createBottomTabNavigator(
     DuncTank: {
       screen: DuncTankScreen,
       navigationOptions: {
-        title: 'Dunk',
+        title: '',
         tabBarIcon: () => {
           return <Icon name="birthday-cake" size={25} />
         }
@@ -99,7 +99,7 @@ const BottomTabNavigator = createBottomTabNavigator(
     Resources: {
       screen: ResourceScreen,
       navigationOptions: {
-        title: 'Resources',
+        title: '',
         tabBarIcon: () => {
           return <Icon name="question-circle" size={25} />;
         }
@@ -108,7 +108,7 @@ const BottomTabNavigator = createBottomTabNavigator(
     Profile: {
       screen: ProfileScreen,
       navigationOptions: {
-        title: 'Profile',
+        title: '',
         tabBarIcon: () => {
           return <Icon name="user" size={25} />;
         }
