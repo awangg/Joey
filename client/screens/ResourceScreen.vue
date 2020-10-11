@@ -1,8 +1,8 @@
 <template>
   <nb-container class="outer">
     <image
-      :style="{width: '100%', height: '100%', position: 'absolute', top: -100}"
-      :source="require('../assets/announcement.png')" />
+      :style="{width: '100%', height: '60%', position: 'absolute', top: -100}"
+      :source="require('../assets/question.png')" />
     <nb-container class="container">
     <nb-content>
        <nb-list>
@@ -79,7 +79,7 @@ export default {
   flex: 1;
   z-index: 1;
   background-color: transparent;
-  padding-top: 350;
+  padding-top: 250;
   padding-left: 20;
   padding-right: 20;
 }
