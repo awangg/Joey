@@ -11,6 +11,7 @@ import Vue from "vue-native-core";
 import Vuex from 'vuex';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { VueNativeBase } from "native-base";
+import * as Font from 'expo-font';
 
 /**
  * Navigation libraries
@@ -155,14 +156,24 @@ const StackNavigator = createStackNavigator(
       screen: DunkTimeScreen
     }
   }, {
-    initialRouteName: 'Tabs'
+    initialRouteName: 'Loading'
   }
 );
 
 const AppNavigator = createAppContainer(StackNavigator);
 
 export default {
-  components: { AppNavigator }
+  components: { AppNavigator },
+  created() {
+    this.loadFonts()
+  },
+  methods: {
+    async loadFonts() {
+      await Font.loadAsync({
+        Holtwood: require('./assets/fonts/HoltwoodOneSC-Regular.ttf')
+      })
+    }
+  }
 }
 </script>
 
