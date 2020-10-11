@@ -56,7 +56,7 @@ const AuthTabNavigator = createBottomTabNavigator(
     tabBarOptions: {
       style: {
         paddingTop: 8,
-        backgroundColor: '#a8cc78'
+        backgroundColor: '#white'
       },
       labelStyle: { fontSize: 16 },
       labelPosition: 'beside-icon',
@@ -109,7 +109,7 @@ const BottomTabNavigator = createBottomTabNavigator(
     tabBarOptions: {
       style: {
         paddingTop: 8,
-        backgroundColor: '#a8cc78'
+        backgroundColor: 'white'
       },
       inactiveTintColor: '#000'
     }
