@@ -3,6 +3,7 @@
     <image
         :style="{width: '100%', height: '100%', position: 'absolute'}"
         :source="require('../assets/authbg.png')" />
+    <nb-container class="container">
       <nb-content padder>
         <nb-card>
           <nb-card-item cardBody>
@@ -30,9 +31,11 @@
 
         </nb-card>
       </nb-content>
+    </nb-container>
 
-    
-      
+    <nb-button class=button :on-press="onPressLearnMore">
+        <nb-text class=text>Customize!</nb-text>
+    </nb-button>
 
   </nb-container>
 </template>
@@ -49,6 +52,11 @@
           }
         }
       };
+    },
+    methods: {
+        onPressLearnMore: function() {
+            alert('Link to Customization Page')
+        }
     }
   };
 
@@ -60,6 +68,10 @@
 .outer {
   flex: 1;
   align-items: center;
+}
+
+.container {
+  background-color: transparent;
 }
 
 .name {
@@ -89,6 +101,17 @@
 .card-item-image {
   left: -2%;
   top: -20%;
+}
+
+.button {
+  margin-bottom: 50;
+  margin-left: 150;
+  margin-right: 100;
+  background-color: white;
+}
+
+.text {
+  color: black;
 }
 
 </style>
