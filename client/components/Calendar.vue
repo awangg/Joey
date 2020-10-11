@@ -13,17 +13,6 @@
 </template>
 <script>
 export default {
-//   props: {
-//     title: { type: String },
-//     message: { type: String },
-//     isUrgent: { type: Boolean }
-//   },
-//   filters: {
-//     trim(value) {
-//       if(!value) return ''
-//       return value.substring(0, 100) + "..."
-    // }
-//   }
 }
 </script>
 
