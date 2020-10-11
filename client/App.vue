@@ -136,14 +136,6 @@ const StackNavigator = createStackNavigator(
         headerShown: false
       }
     },
-    Auth: {
-      screen: AuthTabNavigator,
-      navigationOptions: {
-        headerStyle: {
-          backgroundColor: 'white'
-        }
-      }
-    },
     Tabs: {
       screen: BottomTabNavigator,
       navigationOptions: {
