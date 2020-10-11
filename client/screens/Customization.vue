@@ -1,18 +1,10 @@
 <template>
-  <nb-container class="outer">
-    <image
-        :style="{width: '100%', height: '100%', position: 'absolute'}"
-        :source="require('../assets/authbg.png')" />
     <nb-container class="container">
       <nb-content padder>
         <nb-card>
           <nb-card-item cardBody>
               <image :source="cardImage" class="card-item-image" :style="stylesObj.cardItemImage"/>
           </nb-card-item>
-
-          <nb-body>
-            <nb-text class=name>Duncaroo Roo</nb-text>
-          </nb-body>
 
           <nb-grid>
             <nb-row class=row>
@@ -31,44 +23,56 @@
 
         </nb-card>
       </nb-content>
-    </nb-container>
-
-    <nb-button class=button :on-press="goToCustomization">
-        <nb-text class=text>Customize!</nb-text>
-    </nb-button>
-
+    <nb-container>
+        <nb-header hasTabs/>
+        <nb-tabs>
+        <nb-tab :heading="getHeadingCompForTabColor()">
+            <tab-one />
+        </nb-tab>
+        <nb-tab :heading="getHeadingCompForTabMotion()">
+            <tab-two />
+        </nb-tab>
+        <nb-tab :heading="getHeadingCompForTabAcces()">
+            <tab-three />
+        </nb-tab>
+        </nb-tabs>
+  </nb-container>
   </nb-container>
 </template>
 
 <script>
-  import cardImage from "../assets/circle.png";
-  import Customization from "./Customization.vue";
-
-  export default {
-    data: function() {
-      return {
-        cardImage,
-        stylesObj: {
-          cardItemImage: {
-            resizeMode: "cover"
-          }
-        }
-      };
+import React from "react";
+import { TabHeading, Icon, Text } from "native-base";
+import TabColor from "../components/tabColor";
+import TabMotion from "../components/tabMotion";
+import TabAcces from "../components/tabAcces";
+export default {
+  components: { TabColor, TabMotion, TabAcces },
+  methods: {
+    getHeadingCompForTabColor: function() {
+      return (
+        <TabHeading>
+          <Icon name="camera" />
+          <Text>Camera</Text>
+        </TabHeading>
+      );
     },
-    props: {
-      navigation: {
-        type: Object
-      }
+    getHeadingCompForTabMotion: function() {
+      return (
+        <TabHeading>
+          <Text>No Icon</Text>
+        </TabHeading>
+      );
     },
-    methods: {
-      goToCustomization() {
-        this.navigation.navigate("Customization");
-      }
+    getHeadingCompForTabAcces: function() {
+      return (
+        <TabHeading>
+          <Icon name="apps" />
+        </TabHeading>
+      );
     }
-  };
-
-
-
+  }
+};
 </script>
 
 <style scoped>
