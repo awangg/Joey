@@ -139,7 +139,7 @@ const StackNavigator = createStackNavigator(
       screen: AuthTabNavigator,
       navigationOptions: {
         headerStyle: {
-          backgroundColor: '#1a471a'
+          backgroundColor: 'white'
         }
       }
     },
@@ -147,7 +147,7 @@ const StackNavigator = createStackNavigator(
       screen: BottomTabNavigator,
       navigationOptions: {
         headerStyle: {
-          backgroundColor: '#1a471a'
+          backgroundColor: 'white'
         },
       }
     },
