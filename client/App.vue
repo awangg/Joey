@@ -26,7 +26,7 @@ import ProfileScreen from './screens/ProfileScreen';
 import LoadingScreen from './screens/LoadingScreen';
 import CalendarScreen from './screens/CalendarScreen';
 import AnnouncementScreen from './screens/AnnouncementScreen';
-
+import ReferenceScreen from './screens/ReferenceScreen';
 
 Vue.use(VueNativeBase);
 
@@ -82,6 +82,15 @@ const BottomTabNavigator = createBottomTabNavigator(
         title: 'Calendar',
         tabBarIcon: () => {
           return <Icon name="calendar" size={25} />;
+        }
+      }
+    },
+    References: {
+      screen: ReferenceScreen,
+      navigationOptions: {
+        title: 'References',
+        tabBarIcon: () => {
+          return <Icon name="question-circle" size={25} />;
         }
       }
     },
