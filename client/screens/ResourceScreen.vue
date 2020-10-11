@@ -5,11 +5,41 @@
       :source="require('../assets/announcement.png')" />
     <nb-container class="container">
     <nb-content>
-      <nb-grid>
-        <nb-row>
-          <nb-col class="col1"><nb-text>Hi</nb-text></nb-col>
-        </nb-row>
-      </nb-grid>
+       <nb-list>
+        <nb-list-item selected>
+          <nb-left>
+            <nb-text>Duncan Facebook Page</nb-text>
+          </nb-left>
+          <nb-right>
+            <nb-icon name="arrow-forward" />
+          </nb-right>
+        </nb-list-item>
+        <nb-list-item>
+          <nb-left>
+            <nb-text>Duncan Website</nb-text>
+          </nb-left>
+          <nb-right>
+            <nb-icon name="arrow-forward" />
+          </nb-right>
+        </nb-list-item>
+        <nb-list-item>
+          <nb-left>
+            <nb-text>Anonymous Feedback Form</nb-text>
+          </nb-left>
+          <nb-right>
+            <nb-icon name="arrow-forward" />
+          </nb-right>
+        </nb-list-item>
+        <nb-list-item>
+          <nb-left>
+            <nb-text>PAA Question Form</nb-text>
+          </nb-left>
+          <nb-right>
+            <nb-icon name="arrow-forward" />
+          </nb-right>
+        </nb-list-item>
+
+      </nb-list>
     </nb-content>
   </nb-container>
   </nb-container>
