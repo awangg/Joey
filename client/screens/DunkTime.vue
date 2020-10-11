@@ -1,8 +1,5 @@
 <template>
   <nb-container class="outer">
-    <!-- <image
-      :style="{width: '100%', height: '100%', position: 'absolute', zIndex: 1}"
-      :source="require('../assets/bluebg.png')" /> -->
     <image
       :style="{width: '90%', height: '60%', position: 'absolute', zIndex: 1}"
       :source="require('../assets/dunk.gif')" />
@@ -14,8 +11,7 @@
           transform: [{rotate: spin}] }">
           <image
             :style="{width: 200, height: 200}"
-            :source="require('../assets/person.png')" />
-          <nb-h1 class="name"> {{ navigation.state.params.name }} </nb-h1>
+            :source="image" />
         </animated:view>
     </nb-container>
   </nb-container>
@@ -23,6 +19,7 @@
 
 <script>
 import { Animated, Easing } from "react-native";
+import images from '../utils/images';
 
 export default {
   props: {
@@ -33,7 +30,8 @@ export default {
       spinValue: 0,
       spin: "0deg",
       animatedValueRotate: 0,
-      movingMargin: 0
+      movingMargin: 0,
+      image: ''
     }
   },
   created() {
@@ -41,6 +39,7 @@ export default {
     this.animatedValueRotate = new Animated.Value(0);
   },
   mounted() {
+    this.image = images[Math.trunc(Math.random() * images.length)]
     this.animationRotate()
   },
   methods: {
@@ -106,6 +105,6 @@ export default {
 .name {
   font-size: 36;
   padding: 20;
-  margin-top: -100;
+  margin-top: -175;
 }
 </style>
