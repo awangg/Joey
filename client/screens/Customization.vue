@@ -6,21 +6,6 @@
               <image :source="cardImage" class="card-item-image" :style="stylesObj.cardItemImage"/>
           </nb-card-item>
 
-          <nb-grid>
-            <nb-row class=row>
-              <nb-col class=col><nb-text class=cat>Events</nb-text></nb-col>
-              <nb-col class=col><nb-text class=cat>Points</nb-text></nb-col>
-              <nb-col class=col><nb-text class=cat>Rank</nb-text></nb-col>
-            </nb-row>
-            
-            <nb-row class=row>
-              <nb-col class=col><nb-text class=num>5</nb-text></nb-col>
-              <nb-col class=col><nb-text class=num>100</nb-text></nb-col>
-              <nb-col class=col><nb-text class=num>1</nb-text></nb-col>
-            </nb-row>
-
-          </nb-grid>
-
         </nb-card>
       </nb-content>
     <nb-container>

@@ -82,6 +82,7 @@ export default {
   margin-top: 50;
   margin-left: 100;
   margin-right: 100;
+  background-color: #1a491a;
 }
 
 .error {

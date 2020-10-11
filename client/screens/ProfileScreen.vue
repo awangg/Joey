@@ -1,8 +1,6 @@
 <template>
   <nb-container class="outer">
-    <image
-        :style="{width: '100%', height: '100%', position: 'absolute'}"
-        :source="require('../assets/authbg.png')" />
+    
     <nb-container class="container">
       <nb-content padder>
         <nb-card>
