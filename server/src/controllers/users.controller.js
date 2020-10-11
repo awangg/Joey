@@ -5,6 +5,19 @@ const { UserService } = require('../services')
 const jwt = require('../utils/jwt')
 
 /**
+ * Gets all users
+ * GET /api/v1/users
+ */
+router.get('/', jwt.validate, async (req, res) => {
+  try {
+    let users = await UserService.getAll()
+    res.status(200).json(users)
+  } catch (err) {
+    res.status(err.status).json(err)
+  }
+})
+
+/**
  * Edits user information
  * PUT /api/v1/users/
  */
