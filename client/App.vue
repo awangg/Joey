@@ -25,6 +25,7 @@ import SignupScreen from './screens/SignupScreen';
 import ProfileScreen from './screens/ProfileScreen';
 import LoadingScreen from './screens/LoadingScreen';
 import CalendarScreen from './screens/Calendar';
+import AnnouncementScreen from './screens/AnnouncementScreen';
 
 
 Vue.use(VueNativeBase);
@@ -50,14 +51,59 @@ const AuthTabNavigator = createBottomTabNavigator(
       }
     }
   }, {
-    initialRouteName: 'Login'
+    initialRouteName: 'Login',
+    backBehavior: 'none',
+    tabBarOptions: {
+      style: {
+        paddingTop: 8,
+        backgroundColor: '#a8cc78'
+      },
+      labelStyle: { fontSize: 16 },
+      labelPosition: 'beside-icon',
+      inactiveTintColor: '#000'
+    }
   }
 );
 
 const BottomTabNavigator = createBottomTabNavigator(
   {
-    Profile: ProfileScreen,
-    Calendar: CalendarScreen,
+    Announcements: {
+      screen: AnnouncementScreen,
+      navigationOptions: {
+        title: 'Announcements',
+        tabBarIcon: () => {
+          return <Icon name="bullhorn" size={25} />;
+        }
+      }
+    },
+    Calendar: {
+      screen: CalendarScreen,
+      navigationOptions: {
+        title: 'Calendar',
+        tabBarIcon: () => {
+          return <Icon name="calendar" size={25} />;
+        }
+      }
+    },
+    Profile: {
+      screen: ProfileScreen,
+      navigationOptions: {
+        title: 'Profile',
+        tabBarIcon: () => {
+          return <Icon name="user" size={25} />;
+        }
+      }
+    }
+  }, {
+    initialRouteName: 'Profile',
+    backBehavior: 'none',
+    tabBarOptions: {
+      style: {
+        paddingTop: 8,
+        backgroundColor: '#a8cc78'
+      },
+      inactiveTintColor: '#000'
+    }
   }
 );
 
@@ -73,7 +119,7 @@ const StackNavigator = createStackNavigator(
       screen: AuthTabNavigator,
       navigationOptions: {
         headerStyle: {
-          backgroundColor: '#000'
+          backgroundColor: '#1a471a'
         }
       }
     },
@@ -81,8 +127,8 @@ const StackNavigator = createStackNavigator(
       screen: BottomTabNavigator,
       navigationOptions: {
         headerStyle: {
-          backgroundColor: '#000'
-        }
+          backgroundColor: '#1a471a'
+        },
       }
     },
   }, {
