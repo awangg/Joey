@@ -16,7 +16,7 @@
       </nb-right>
     </nb-header>
     <nb-content>
-      <Calendar />
+      <Calendar v-bind:month="this.month" v-bind:today="this.todayDate" />
     </nb-content>
   </nb-container>
 </template>
@@ -35,7 +35,8 @@ export default {
       months: [
             'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'
           ],
-      month: 'January'
+      month: 'January',
+      todayDate: ''
     }
   },
   created() {
@@ -61,6 +62,7 @@ export default {
           var dd = String(today.getDate()).padStart(2, '0') // get the DAY
           this.monthNum = String(today.getMonth() + 1).padStart(2, '0') - 1
           this.month = this.months[this.monthNum]
+          this.todayDate = String(today.getMonth() + 1).padStart(2, '0') + '-' + dd
           return this.month
         }
     }
