@@ -11,7 +11,7 @@
 <script>
 export default {
   props: {
-    navigation: { type: Object }
+    navigation: { type: Object } 
   }
 }
 

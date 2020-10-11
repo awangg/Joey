@@ -1,8 +1,8 @@
 <template>
   <nb-container class="outer">
     <image
-        :style="{width: '100%', height: '100%', position: 'absolute'}"
-        :source="require('../assets/authbg.png')" />
+      :style="{width: '100%', height: '100%', position: 'absolute'}"
+      :source="require('../assets/authbg.png')" />
     <nb-container class="container">
       <nb-h1 class="title"> Login to Joey </nb-h1>
       <nb-form>
@@ -34,7 +34,7 @@ export default {
     return {
       form: {
         email: 'test@test.test',
-        password: 'password2'
+        password: 'test'
       },
       error: ''
     }

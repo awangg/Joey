@@ -8,5 +8,6 @@ router.get('/healthCheck', (req, res) => {
 router.use('/auth', require('./auth.controller'))
 router.use('/events', require('./events.controller'))
 router.use('/users', require('./users.controller'))
+router.use('/announcements', require('./announcements.controller'))
 
 module.exports = router
