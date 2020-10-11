@@ -155,7 +155,7 @@ const StackNavigator = createStackNavigator(
       screen: DunkTimeScreen
     }
   }, {
-    initialRouteName: 'Tabs'
+    initialRouteName: 'Loading'
   }
 );
 
