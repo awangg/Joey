@@ -1,7 +1,6 @@
 <template>
   <view class="container">
   <nb-container>
-    <nb-header>
       <nb-left>
         <nb-button :on-press="goBack">
           <text>previous</text>
@@ -18,13 +17,12 @@
           <text>MONTHMONTH</text>
         </nb-button>
       </nb-right>
-    </nb-header>
-          <nb-grid>
-            <nb-row>
-              <nb-col :style="{ backgroundColor: '#635DB7' }"></nb-col>
-              <nb-col :style="{ backgroundColor: '#00CE9F' }"></nb-col>
-            </nb-row>
-          </nb-grid>
+      <nb-grid>
+        <nb-row>
+          <nb-col :style="{ backgroundColor: '#635DB7' }"></nb-col>
+          <nb-col :style="{ backgroundColor: '#00CE9F' }"></nb-col>
+        </nb-row>
+      </nb-grid>
   </nb-container>
   <nb-container>
       <Calendar />
@@ -42,7 +40,7 @@ export default {
   components: { Calendar },
   data() {
     return {
-      month: '',
+      monthNum: 0,
       months: [
             'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'
           ]
@@ -53,18 +51,19 @@ export default {
   },
   methods: {
         goBack: function() {
-            alert('MWAHAHAHA GO BACK')
-            this.month = 
+            this.monthNum = this.monthNum - 1
+            alert('MWAHAHAHA GO BACK: ' + this.months[this.monthNum])
         },
         goNext: function() {
-            alert('MWAHAHAHA GO NEXT')
+            this.monthNum = this.monthNum + 1
+            alert('MWAHAHAHA GO NEXT: ' + this.months[this.monthNum])
         },
         getMonth: function() {
           var today = new Date()
           var dd = String(today.getDate()).padStart(2, '0') // get the DAY
-          var mm = String(today.getMonth() + 1).padStart(2, '0')
-          alert(this.months[mm - 1])
-          return this.months[mm - 1]
+          this.monthNum = String(today.getMonth() + 1).padStart(2, '0') - 1
+          alert(this.months[this.monthNum])
+          return this.months[this.monthNum]
         }
     }
 }
