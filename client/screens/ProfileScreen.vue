@@ -77,6 +77,7 @@
 .name {
   bottom: 100;
   font-size: 40px;
+  color: #1a491a;
 }
 
 .col {
@@ -90,12 +91,13 @@
 
 .cat{
   font-size: 25px;
-  color: gray;
+  color: #a8ce78;
 }
 
 .num{
   font-size: 20px;
   font-weight: bold;
+  color: #1a491a;
 }
 
 .card-item-image {
@@ -111,7 +113,7 @@
 }
 
 .text {
-  color: black;
+  color: #1a491a;
 }
 
 </style>
