@@ -64,6 +64,6 @@ export default {
   flex: 1;
   z-index: 1;
   background-color: transparent;
-  padding-top: 350;
+  padding-top: 200;
 }
 </style>
