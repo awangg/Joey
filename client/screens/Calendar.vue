@@ -8,10 +8,6 @@
 export default {
   props: {
     navigation: { type: Object } 
-  },
-  mounted() {
-    let _this = this;
-    setTimeout(function () { _this.navigation.navigate('Auth') }, 2000)
   }
 }
 </script>
