@@ -3,19 +3,20 @@
     <image
       :style="{width: '100%', height: '100%', position: 'absolute', top: -100}"
       :source="require('../assets/announcement.png')" />
-    <nb-container>
-    <nb-header />
+    <nb-container class="container">
     <nb-content>
-      <nb-icon name='home' />
-      <nb-icon ios="ios-menu" android="md-menu" :style="{ fontSize: 20, color: 'red' }" />
-      <nb-icon type="FontAwesome" name="home"/>
+      <nb-grid>
+        <nb-row>
+          <nb-col class="col1"><nb-text>Hi</nb-text></nb-col>
+        </nb-row>
+      </nb-grid>
     </nb-content>
   </nb-container>
   </nb-container>
 </template>
 
 <script>
-
+import Icon from 'react-native-vector-icons/FontAwesome';
 export default {
   
 }
@@ -32,5 +33,12 @@ export default {
   z-index: 1;
   background-color: transparent;
   padding-top: 350;
+  padding-left: 20;
+  padding-right: 20;
+}
+
+.col1{
+  background-color: #a8ce78;
+  height: 20;
 }
 </style>
