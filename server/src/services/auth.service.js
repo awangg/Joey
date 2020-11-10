@@ -16,8 +16,8 @@ const login = async (email, password) => {
 }
 
 const signup = async (data) => {
-  const { value } = await User.validateModel(data)
-  if(!value) throw new ApiError('Invalid Model', 400)
+  const { value, error } = await User.validateModel(data)
+  if(error) throw new ApiError(error.details[0].message, 400)
 
   const existing = await User.findOne({ email: value.email })
   if(existing) throw new ApiError('User Already Exists', 401)

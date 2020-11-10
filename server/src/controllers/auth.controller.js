@@ -23,8 +23,7 @@ router.post('/login', async (req, res) => {
  */
 router.post('/signup', async (req, res) => {
   try {
-    let data = req.body
-    let newser = await AuthService.signup(data)
+    let newser = await AuthService.signup(req.body)
     let user = await AuthService.login(newser.email, req.body.password)
     res.status(201).json(user)
   } catch (err) {

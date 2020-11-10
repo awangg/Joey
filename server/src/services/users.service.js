@@ -1,6 +1,11 @@
 const { Event, User } = require('../models')
 const ApiError = require('../utils/error')
 
+const getAll = async () => {
+  let users = await User.find({})
+  return users
+}
+
 const updateInfo = async (email, data) => {
   let user = await User.findOne({ email: email })
   if(data.name) user.name = data.name
@@ -35,6 +40,7 @@ const cancelOnEvent = async (email, eventId) => {
 }
 
 module.exports = {
+  getAll: getAll,
   updateInfo: updateInfo,
   registerForEvent: registerForEvent,
   cancelOnEvent: cancelOnEvent
